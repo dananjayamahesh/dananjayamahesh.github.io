@@ -39,7 +39,7 @@
 <a id="wso2-cep-complex-event-processor" class="anchor" href="#wso2-cep-complex-event-processor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP (Complex Event Processor)</h4>
 
 <h4>
-<a id="my-solution" class="anchor" href="#my-solution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>My Solution</h4>
+<a id="solution" class="anchor" href="#solution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h4>
 
 <h4>
 <a id="architecture--implementation" class="anchor" href="#architecture--implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture &amp; Implementation</h4>
@@ -91,11 +91,17 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <h3>
 <a id="wso2-ml-machine-learner-1" class="anchor" href="#wso2-ml-machine-learner-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 ML (Machine Learner)</h3>
 
+<p>WSO2 use <code>carbon-ml</code> as their machine learning (ML) backbone which is based on the famous Apache Spark. With objective of supporting Big Data with a massive online analsis their intial project idea to extend their ML capabilities to real time retrain ML models with time without forgetting past which is the current scenario. Therefore the objective is to retrain with present data and past insight of data (basically the past ML models) and retain them fro predictions with prediction streams. In this way they sont need to store massive amount of datasets to training where model conatins the insight of data. Currently WSO2 ML has different extensions to work with their CEP (Complex Event Processor) which is their stream/event-processing solution. For more  information and documentation of WSO2 ML please check <a href="http://wso2.com/products/machine-learner/">here</a>. </p>
+
+<hr>
+
 <h3>
 <a id="wso2-cep-complex-event-processor-1" class="anchor" href="#wso2-cep-complex-event-processor-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP (Complex Event Processor)</h3>
 
+<p>CEP is their main event/stream processing framework which is built upon Apache Storm for distribution. CEP can handle streams and events in better way so we can perform integration, division etc. Therefore CEP has the potential to act as a stream processing engine which is similar to Apache spark streaming. CEP can deploy CEP siddhi extensions which are very easy to build and integrate with the CEP and siddhi queries. Complete set if instructions and guidance i used to develop CEP siddhi extension for my analysis is build with the help of WSO2 documentations of ML CEP <a href="https://docs.wso2.com/display/ML100/WSO2+CEP+Extension+for+ML+Predictions">extension</a>. And also integration of the extensions with the CEP was done with this <a href="http://sachinij.blogspot.com/2014/12/writing-siddhi-extensions.html">blog</a>. For more information on WSO2 CEP can be found <a href="http://wso2.com/products/complex-event-processor/">here</a>.</p>
+
 <h3>
-<a id="solution" class="anchor" href="#solution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h3>
+<a id="solution-1" class="anchor" href="#solution-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h3>
 
 <h3>
 <a id="architecture--implementation-1" class="anchor" href="#architecture--implementation-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture &amp; Implementation</h3>
