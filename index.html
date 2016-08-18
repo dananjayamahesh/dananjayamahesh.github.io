@@ -16,15 +16,23 @@
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
+      <p>This Blog Contain the summary of the Google Summer of Code 2016 project with WSO2.</p>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
+
+<h2>
+<a id="batch-processing-vs-streaming-learning" class="anchor" href="#batch-processing-vs-streaming-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Batch-Processing Vs Streaming Learning</h2>
+
+<h3>
+<a id="overview-1" class="anchor" href="#overview-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
 
 <p>This project is to implement incremental machine learning algorithms to re-train machine learning models real time extending WSO2 Machine Learner (ML) for predictive big data analysis with the streaming support and WSO2 CEP (Complex Event Processor) extension support which can be deployed distributedly for massive online analysis. This solution provide hybrid and easily adoptable solution for both volume centric and velocity focused big-data analysis realizing the nature and the form of the big data. Therefore anlaysing data real-time with reduced latenncies with incremental machine learning algorithms such as GSD (Stochastic Gradient Descent) Optimization and mini-batch processing with the concepts such as data horizon and data obsolences is the primary focus of the initial project. you can find the WSO2 project idea <a href="https://docs.wso2.com/display/GSoC/Project+Proposals+for+2016#ProjectProposalsfor2016-Proposal6:%5BML%5DPredictiveanalyticswithonlinedataforWSO2MachineLearner">here</a> and my project proposal <a href="docs/proposal.pdf">here</a>. </p>
 
 <hr>
 
 <h3>
-<a id="batch-processing-vs-streaming-learning" class="anchor" href="#batch-processing-vs-streaming-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Batch-Processing Vs Streaming Learning</h3>
+<a id="batch-processing-vs-streaming-learning-1" class="anchor" href="#batch-processing-vs-streaming-learning-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Batch-Processing Vs Streaming Learning</h3>
 
 <p>It is paramount imporatant to underestand the nature of the analysis to come up with a soultion for data analysis.Batch-Processing and supported algorithms for retrain ML models are to address the increasing vloume of the data. But with the rapid growth of the Internet of things (IoT) the velocity of the data is becoming vital to reduce the responce time such as in the case of sensor data processing. Mini-Batch processing is the easier way to handle large scale data which can be processed distributedly and independently. Batch Processing is the efficient way to address high volume of data where algorithms such as MapReduce are used to divide massive datasets across multiple distributed clusters for processing. But studies has shown that to extract near real tim insight of massive data, it is much better to use streaming learning. But with the nature if data it is paramount important to handle two scenarios in a hybrid soultion to handle both adoptably.</p>
 
