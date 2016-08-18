@@ -89,8 +89,8 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <p>We have provided the two solutions based on the WSO2 ML team requirement. This two solutions address two different aspects of big real time data analysis. high data volume aware solution which can address streaming learning and purely streaming aware solution which can address the volume by using micro-batch processing. They are spark based and samoa based real time predictive big data analysis. According to the WSO2 project idea the first implementation is based on the Apache Spark mini-batch processing and incremental learning algorithms such as SDG (Stochasic Gradient Descent) Optimization for Streaming Linear Regression, mini-batch clustering for streaming Kmeans Clustering. Both algorithms periodically retrain and update the ML model and both have their own CEP siddhi extension to invoke from CEP side for predictive analysis. But additioanlly after mid-review of GSOC WSO2 ML is looking for much better streaming solution. Therefore i have do review on SAMOA framwork and integrate it with the cep for high end streaming learning. Therefore As the second phase of my project i have to integrate novel and advanced samoa architecture for real time streaming predictive analysis with a CEP siddhi extension support to deply in the CEP side.Therefore in the complete project i have developed three core modules,</p>
 
 <ol>
-<li> Apache Spark based Streaming Linear Regression </li>
-<li> Apache Spark Based Streaming Kmeans CLustering</li>
+<li> Apache Spark based Streaming Linear Regression with mini-batch SGD (Stochastic Gradient Descent) Optimization</li>
+<li> Apache Spark Based Streaming Kmeans CLustering with mini-batch clustering</li>
 <li> Apache Samoa Based Streaming Clustering (Integration of SAMOA with WSO2 CEP)</li>
 </ol>
 
@@ -99,7 +99,16 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <h3>
 <a id="architecture--implementation" class="anchor" href="#architecture--implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture &amp; Implementation</h3>
 
+<ol>
+<li><pre><code>  Spark Based Real Time Predictive Big Data Analysis
+</code></pre></li>
+<li>
+<pre><code>  Samoa Based Real Time Massive Predictive Analysis
+</code></pre>
+
 <hr>
+</li>
+</ol>
 
 <h3>
 <a id="developer-environment" class="anchor" href="#developer-environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developer Environment</h3>
