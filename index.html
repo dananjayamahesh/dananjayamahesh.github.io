@@ -33,12 +33,15 @@
 <h3>
 <a id="apache-spark-and-mini-batch-processing" class="anchor" href="#apache-spark-and-mini-batch-processing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Apache Spark and Mini-Batch Processing</h3>
 
-<p>Spark has mini-batch processing based incremetal algorithms which is currenlty one of best solution for distributed processing with the fastest MapReduce algorithm than Hadoop. And also Spark has streaming solution which divide massive data sets or data streams into distributed streams and process against incremental algorithms. Apache Spark has a incremental learning algorithm support sudh as mini-batch algorithms, (SGD) stochastic gradient optimizations. Storm is the underlying distributed stream processing framework for spark. Thei streaming solution is advances to their MLLib, which mae use of same set of algorithms upon distributed streams fro streaming analysis. Therefore Spache Spark is ideal for handling high volume of data rather than processing faster which may be the case in extracting near insight of streaming learning.</p>
+<p>Spark has mini-batch processing based incremetal algorithms which is currenlty one of best solution for distributed processing with the fastest MapReduce algorithm than Hadoop. And also Spark has streaming solution which divide massive data sets or data streams into distributed streams and process against incremental algorithms. Apache Spark has a incremental learning algorithm support sudh as mini-batch algorithms, (SGD) stochastic gradient optimizations. Storm is the underlying distributed stream processing framework for spark. Thei streaming solution is advances to their MLLib, which mae use of same set of algorithms upon distributed streams fro streaming analysis. Therefore Spache Spark is ideal for handling high volume of data rather than processing faster which may be the case in extracting near insight of streaming learning.
+      Most important factor is that even though the Apache Spark support mini-nbatch learning we can extensd its features to train models and retrain them as streams in real time as micro batches by reducing the batch size. This is not encouraged when the massive data volume is the critical factor for the  anlaysis. Beacuse in the batch-processing there is always a additional delay. Batch processing is really good for the situation where we need strategic insight when there is no need to process data in real time. Therefore spark is ideal for mini-batch processing scenarios.</p>
 
 <hr>
 
 <h3>
 <a id="apache-samoa-and-streaming-learning" class="anchor" href="#apache-samoa-and-streaming-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Apache SAMOA and Streaming Learning</h3>
+
+<p>SAMOA (Scalable and Massive Online Analysis) is one of the emerging technologies that can be used for streaming analysis in real time. This SAMOA has already solved the scalability issues arised with its predecesors MOA, WEKA etc. This SAMOA is processing streams real time and can do fast retraining in real time analysis. When its comes to streaming processing </p>
 
 <h3>
 <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
