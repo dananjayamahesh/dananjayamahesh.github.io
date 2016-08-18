@@ -20,50 +20,31 @@
 
 <hr>
 
-<h4>
-<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h4>
-
-<h4>
-<a id="batch-processing-vs-streaming-learning" class="anchor" href="#batch-processing-vs-streaming-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Batch-Processing Vs Streaming Learning</h4>
-
-<h4>
-<a id="apache-spark--mini-batch-learning" class="anchor" href="#apache-spark--mini-batch-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Apache Spark &amp; Mini-Batch Learning</h4>
-
-<h4>
-<a id="apache-samoa--streaming-learning" class="anchor" href="#apache-samoa--streaming-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Apache SAMOA &amp; Streaming Learning</h4>
-
-<h4>
-<a id="wso2-ml-machine-learner" class="anchor" href="#wso2-ml-machine-learner" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 ML (Machine Learner)</h4>
-
-<h4>
-<a id="wso2-cep-complex-event-processor" class="anchor" href="#wso2-cep-complex-event-processor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP (Complex Event Processor)</h4>
-
-<h4>
-<a id="solution" class="anchor" href="#solution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h4>
-
-<h4>
-<a id="architecture--implementation" class="anchor" href="#architecture--implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture &amp; Implementation</h4>
-
-<h4>
-<a id="environment-set-up" class="anchor" href="#environment-set-up" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment Set-Up</h4>
-
-<h4>
-<a id="wso2-siddhi-query-for-streaming-ml-analysis" class="anchor" href="#wso2-siddhi-query-for-streaming-ml-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 Siddhi Query for Streaming ML analysis</h4>
-
-<h4>
-<a id="gsoc-final-evaluation-links" class="anchor" href="#gsoc-final-evaluation-links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GSOC Final Evaluation Links</h4>
+<ol>
+<li>####   Overview</li>
+<li>####   Batch-Processing Vs Streaming Learning</li>
+<li>####   Apache Spark &amp; Mini-Batch Learning</li>
+<li>####   Apache SAMOA &amp; Streaming Learning</li>
+<li>####   WSO2 ML (Machine Learner)</li>
+<li>####   WSO2 CEP (Complex Event Processor)</li>
+<li>####   Solution</li>
+<li>####   Architecture &amp; Implementation</li>
+<li>####   Environment Set-Up</li>
+<li>####   WSO2 Siddhi Query for Streaming ML analysis</li>
+<li>####   GSOC Final Evaluation Links</li>
+</ol>
 
 <hr>
 
 <h3>
-<a id="overview-1" class="anchor" href="#overview-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
 
 <p>This project is to implement incremental machine learning algorithms to re-train machine learning models real time extending WSO2 Machine Learner (ML) for predictive big data analysis with the streaming support and WSO2 CEP (Complex Event Processor) extension support which can be deployed distributedly for massive online analysis. This solution provide hybrid and easily adoptable solution for both volume centric and velocity focused big-data analysis realizing the nature and the form of the big data. Therefore anlaysing data real-time with reduced latencies with incremental machine learning algorithms such as GSD (Stochastic Gradient Descent) Optimization and mini-batch processing with the concepts such as data horizon and data obsolences is the primary focus of the initial project. you can find the WSO2 project idea <a href="https://docs.wso2.com/display/GSoC/Project+Proposals+for+2016#ProjectProposalsfor2016-Proposal6:%5BML%5DPredictiveanalyticswithonlinedataforWSO2MachineLearner">here</a> and my project proposal <a href="docs/proposal.pdf">here</a>. </p>
 
 <hr>
 
 <h3>
-<a id="batch-processing-vs-streaming-learning-1" class="anchor" href="#batch-processing-vs-streaming-learning-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Batch-Processing Vs Streaming Learning</h3>
+<a id="batch-processing-vs-streaming-learning" class="anchor" href="#batch-processing-vs-streaming-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Batch-Processing Vs Streaming Learning</h3>
 
 <p>It is paramount imporatant to underestand the nature of the analysis to come up with a soultion for data analysis.Batch-Processing and supported algorithms for retrain ML models are to address the increasing vloume of the data. But with the rapid growth of the Internet of things (IoT) the velocity of the data is becoming vital to reduce the responce time such as in the case of sensor data processing. Mini-Batch processing is the easier way to handle large scale data which can be processed distributedly and independently. Batch Processing is the efficient way to address high volume of data where algorithms such as MapReduce are used to divide massive datasets across multiple distributed clusters for processing. But studies has shown that to extract near real tim insight of massive data, it is much better to use streaming learning. But with the nature if data it is paramount important to handle two scenarios in a hybrid soultion to handle both adoptably.</p>
 
@@ -82,41 +63,41 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 
 <p>SAMOA (Scalable and Massive Online Analysis) is one of the emerging technologies that can be used for streaming analysis in real time. This SAMOA has already solved the scalability issues arised with its predecesors MOA, WEKA etc. This SAMOA is processing streams real time and can do fast retraining in real time analysis. And also SAMOA can be deplyed distributedly and process in a distributed cluster which can be powered by Storm, Samza and S4.With the scalable and flexible architecture SAMOA can support streaming learning with massive data. And also it can support both types of streaming learning.
 1. Native Stream Processing (tuple-at-a-time processing).
-2. Micro Batch Processing. </p>
+1. Micro Batch Processing. </p>
 
 <p>Both approaches have it's pros and cons. If we need to do massive analysis and resond real time, the native learning approach is more appropriate. Though this apprach is resulting in lowest possible latency, as long as the data volume is getting bigger it is not computationally efficient.In that case processing can be done as micro-batch processing with relevant ML algorithms. More importantly SAMOA provides basic building blocks wchich can be used for comples streaming analysis topologies which make it more scalable. You can find more information on Apache SAMOA <a href="https://samoa.incubator.apache.org/">here</a>.  </p>
 
 <hr>
 
 <h3>
-<a id="wso2-ml-machine-learner-1" class="anchor" href="#wso2-ml-machine-learner-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 ML (Machine Learner)</h3>
+<a id="wso2-ml-machine-learner" class="anchor" href="#wso2-ml-machine-learner" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 ML (Machine Learner)</h3>
 
 <p>WSO2 use <code>carbon-ml</code> as their machine learning (ML) backbone which is based on the famous Apache Spark. With objective of supporting Big Data with a massive online analsis their intial project idea to extend their ML capabilities to real time retrain ML models with time without forgetting past which is the current scenario. Therefore the objective is to retrain with present data and past insight of data (basically the past ML models) and retain them fro predictions with prediction streams. In this way they sont need to store massive amount of datasets to training where model conatins the insight of data. Currently WSO2 ML has different extensions to work with their CEP (Complex Event Processor) which is their stream/event-processing solution. For more  information and documentation of WSO2 ML please check <a href="http://wso2.com/products/machine-learner/">here</a>. Ultimate objective of this project is to develop API with a CEP siddhi extension that can be deplyed on carbon-ml and as well as standalone siddhi extension.</p>
 
 <hr>
 
 <h3>
-<a id="wso2-cep-complex-event-processor-1" class="anchor" href="#wso2-cep-complex-event-processor-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP (Complex Event Processor)</h3>
+<a id="wso2-cep-complex-event-processor" class="anchor" href="#wso2-cep-complex-event-processor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP (Complex Event Processor)</h3>
 
 <p>CEP is their main event/stream processing framework which is built upon Apache Storm for distribution. CEP can handle streams and events in better way so we can perform integration, division etc. Therefore CEP has the potential to act as a stream processing engine which is similar to Apache spark streaming. CEP can deploy CEP siddhi extensions which are very easy to build and integrate with the CEP and siddhi queries. Complete set if instructions and guidance i used to develop CEP siddhi extension for my analysis is build with the help of WSO2 documentations of ML CEP <a href="https://docs.wso2.com/display/ML100/WSO2+CEP+Extension+for+ML+Predictions">extension</a>. And also integration of the extensions with the CEP was done with this <a href="http://sachinij.blogspot.com/2014/12/writing-siddhi-extensions.html">blog</a>. For more information on WSO2 CEP can be found <a href="http://wso2.com/products/complex-event-processor/">here</a>. In my solution i have created three CEP siddhi extensions for my project.</p>
 
 <hr>
 
 <h3>
-<a id="solution-1" class="anchor" href="#solution-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h3>
+<a id="solution" class="anchor" href="#solution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h3>
 
 <p>We have provided the two solutions based on the WSO2 ML team requirement. This two solutions address two different aspects of big real time data analysis. high data volume aware solution which can address streaming learning and purely streaming aware solution which can address the volume by using micro-batch processing. They are spark based and samoa based real time predictive big data analysis. According to the WSO2 project idea the first implementation is based on the Apache Spark mini-batch processing and incremental learning algorithms such as SDG (Stochasic Gradient Descent) Optimization for Streaming Linear Regression, mini-batch clustering for streaming Kmeans Clustering. Both algorithms periodically retrain and update the ML model and both have their own CEP siddhi extension to invoke from CEP side for predictive analysis. But additioanlly after mid-review of GSOC WSO2 ML is looking for much better streaming solution. Therefore i have do review on SAMOA framwork and integrate it with the cep for high end streaming learning. Therefore As the second phase of my project i have to integrate novel and advanced samoa architecture for real time streaming predictive analysis with a CEP siddhi extension support to deply in the CEP side.Therefore in the complete project i have developed three core modules,</p>
 
 <ol>
-<li> 1. Apache Spark based Streaming Linear Regression </li>
-<li> 2. Apache Spark Based Streaming Kmeans CLustering</li>
-<li> 3. Apache Samoa Based Streaming Clustering (Integration of SAMOA with WSO2 CEP)</li>
+<li> Apache Spark based Streaming Linear Regression </li>
+<li> Apache Spark Based Streaming Kmeans CLustering</li>
+<li> Apache Samoa Based Streaming Clustering (Integration of SAMOA with WSO2 CEP)</li>
 </ol>
 
 <hr>
 
 <h3>
-<a id="architecture--implementation-1" class="anchor" href="#architecture--implementation-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture &amp; Implementation</h3>
+<a id="architecture--implementation" class="anchor" href="#architecture--implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture &amp; Implementation</h3>
 
 <hr>
 
@@ -131,7 +112,7 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <hr>
 
 <h3>
-<a id="gsoc-final-evaluation-links-1" class="anchor" href="#gsoc-final-evaluation-links-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GSOC Final Evaluation Links</h3>
+<a id="gsoc-final-evaluation-links" class="anchor" href="#gsoc-final-evaluation-links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GSOC Final Evaluation Links</h3>
 
 <hr>
 
