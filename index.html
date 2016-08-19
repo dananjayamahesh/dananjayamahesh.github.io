@@ -323,6 +323,20 @@ SimpleEngine.submitTopology(task.getTopology());
 <pre><code>public class StreamingClusteringTask implements Task, Configurable
 </code></pre>
 
+<p>Main idea of Task is to connect streams with processors and build a complex topology. In this clustering analysis case i connected my Streaming Clustering Stream with my Streaming Clustering Entrance Processor. And Then My entrance processor is connected to SAMOA Learning components sequential way or distributed way. Then the topology output is extracted by my Streaming Clustering Evaluation processor which send output model to egress buffer. When we take <code>StreamingClusteringStream.java</code> it is inherited from Samoa ClusteringStream. Or else we can inherit from samoa InstanceStream. Either way we have to generate InstanceStream which is very similar to CEP Event Streams. Because insode SAMOA every data point is processed as <code>Instance</code>.</p>
+
+<pre><code>public class StreamingClusteringStream  extends ClusteringStream 
+</code></pre>
+
+<p>In that <code>StreamingClusteringStream.java</code> we have to override some methods to feed custom streams into Samoa core for predictive analysis. If you want to define your own InstanceStream or custom stream that need to connect to Samoa you can simply override following methods as i did. </p>
+
+<pre><code>protected void prepareForUseImpl(TaskMonitor taskMonitor, ObjectRepository objectRepository)
+public InstancesHeader getHeader() 
+public boolean hasMoreInstances()
+public Example&lt;Instance&gt; nextInstance() 
+
+</code></pre>
+
 <hr>
 
 <h3>
