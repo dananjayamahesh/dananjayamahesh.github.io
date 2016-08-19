@@ -62,9 +62,12 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <h3>
 <a id="apache-samoa-and-streaming-learning" class="anchor" href="#apache-samoa-and-streaming-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Apache SAMOA and Streaming Learning</h3>
 
-<p>SAMOA (Scalable and Massive Online Analysis) is one of the emerging technologies that can be used for streaming analysis in real time. This SAMOA has already solved the scalability issues arised with its predecesors MOA, WEKA etc. This SAMOA is processing streams real time and can do fast retraining in real time analysis. And also SAMOA can be deplyed distributedly and process in a distributed cluster which can be powered by Storm, Samza and S4.With the scalable and flexible architecture SAMOA can support streaming learning with massive data. And also it can support both types of streaming learning.
-1. Native Stream Processing (tuple-at-a-time processing).
-1. Micro Batch Processing. </p>
+<p>SAMOA (Scalable and Massive Online Analysis) is one of the emerging technologies that can be used for streaming analysis in real time. This SAMOA has already solved the scalability issues arised with its predecesors MOA, WEKA etc. This SAMOA is processing streams real time and can do fast retraining in real time analysis. And also SAMOA can be deplyed distributedly and process in a distributed cluster which can be powered by Storm, Samza and S4.With the scalable and flexible architecture SAMOA can support streaming learning with massive data. And also it can support both types of streaming learning.</p>
+
+<ol>
+<li>Native Stream Processing (tuple-at-a-time processing).</li>
+<li>Micro Batch Processing. </li>
+</ol>
 
 <p>Both approaches have it's pros and cons. If we need to do massive analysis and resond real time, the native learning approach is more appropriate. Though this apprach is resulting in lowest possible latency, as long as the data volume is getting bigger it is not computationally efficient.In that case processing can be done as micro-batch processing with relevant ML algorithms. More importantly SAMOA provides basic building blocks wchich can be used for comples streaming analysis topologies which make it more scalable. You can find more information on Apache SAMOA <a href="https://samoa.incubator.apache.org/">here</a>.  </p>
 
@@ -497,10 +500,15 @@ insert into ccppOutputStream
 
 <p>Likewise you can make use of siddhi query to change the analysis and parameter. Lets say you need 3 clusters and you want to get 3 cluster centers back, then you have to use like below,</p>
 
-<pre><code>define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string, center2 string);
+<pre><code>@Import('ccppInputStream:1.0.0')
+define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
 
-from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, *3*, 1, 0.95, PE, ATV, V, AP, RH)
+@Export('ccppOutputStream:1.0.0')
+define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string, center2 string);
 
+from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, **3**, 1, 0.95, PE, ATV, V, AP, RH)
+select *
+insert into ccppOutputStream
 </code></pre>
 
 <hr>
