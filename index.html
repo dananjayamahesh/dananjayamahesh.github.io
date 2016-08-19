@@ -170,40 +170,48 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h4>
 
 <p>As long as i use Maven to build with dependencies i use these following dependencies in my pom.xml.
-WSO2 CEP Siddhi Dependencies
-`    
+WSO2 CEP Siddhi Dependencies</p>
+
+<blockquote>
+<p>
   org.wso2.siddhi
   siddhi-core
    3.0.6-SNAPSHOT 
 </p>
+</blockquote>
 
 <p>
   org.wso2.siddhi
   siddhi-query-api
    3.0.6-SNAPSHOT 
-
-<code>
-**Apache Spark Dependencies**
-</code>    
-  org.apache.spark
-  spark-core_2.10
-  1.6.1
 </p>
 
-<p>
-  org.apache.spark
-  spark-mllib_2.10
-  1.6.1
+<blockquote>
+</blockquote>
+</li>
+</ol>
 
-`</p>
+<p>Apache Spark Dependencies
+`    
+      org.apache.spark
+      spark-core_2.10
+      1.6.1
+    </p>
+
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-mllib_2.10&lt;/artifactId&gt;
+  &lt;version&gt;1.6.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>`</p>
 
 <h4>
 <a id="wso2-cep-siddhi-extension" class="anchor" href="#wso2-cep-siddhi-extension" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP Siddhi Extension</h4>
 
 <p>All three components have their native CEP siddhi extensions based on the StreamProcessor Extension.
 `</p>
-</li>
-</ol>
 
 <p>`</p>
 
