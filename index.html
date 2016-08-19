@@ -328,14 +328,30 @@ SimpleEngine.submitTopology(task.getTopology());
 <pre><code>public class StreamingClusteringStream  extends ClusteringStream 
 </code></pre>
 
-<p>In that <code>StreamingClusteringStream.java</code> we have to override some methods to feed custom streams into Samoa core for predictive analysis. If you want to define your own InstanceStream or custom stream that need to connect to Samoa you can simply override following methods as i did. </p>
+<p>In that <code>StreamingClusteringStream.java</code> we have to override some methods to feed custom streams into Samoa core for predictive analysis. If you want to define your own InstanceStream or custom stream that need to connect to Samoa you can simply override following methods as i did with following inside <code>StreamingClusteringStream.java</code>. </p>
 
 <pre><code>protected void prepareForUseImpl(TaskMonitor taskMonitor, ObjectRepository objectRepository)
 public InstancesHeader getHeader() 
 public boolean hasMoreInstances()
-public Example&lt;Instance&gt; nextInstance() 
-
+public Example&lt;Instance&gt; nextInstance()         
 </code></pre>
+
+<p>And SAMOA is using ContentEvent to pass  through streams which contains elements what we need to process such as Instance. And to feed my streams into samoa toy have to override the my Entrance Processor: <code>StreamingClusteringEntranceProcessor.java</code> .</p>
+
+<pre><code>public ContentEvent nextEvent()
+</code></pre>
+
+<p>Finally we need to build evaluation or result capturing module from learners. Therefore i developed my <code>StreamingClusteringEvaluationProcessor.java</code> module to extract clustering results from Learning modules. In flexible samoa architecture we can define our own <code>Learner</code> modules to train ML models.</p>
+
+<pre><code>public class StreamingClusteringEvaluationProcessor implements Processor
+</code></pre>
+
+<p>Inside evaluation processor i have to override its <code>process()</code> method for this integration and get back results.</p>
+
+<pre><code>public boolean process(ContentEvent event) 
+</code></pre>
+
+<p>Therefore now complete predictive analysis topology with SAMOA has already built. So now you can build and initialize the task.</p>
 
 <hr>
 
