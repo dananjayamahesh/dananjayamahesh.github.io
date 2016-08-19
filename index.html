@@ -427,7 +427,6 @@ mvn package
             &lt;/configuration&gt;
           &lt;/execution&gt;
         &lt;/executions&gt;
-
       &lt;/plugin&gt;
     &lt;/plugins&gt;
   &lt;/build&gt;
@@ -438,6 +437,68 @@ mvn package
 
 <h3>
 <a id="wso2-siddhi-queries-for-streaming-analysis" class="anchor" href="#wso2-siddhi-queries-for-streaming-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 Siddhi Queries for Streaming Analysis</h3>
+
+<p>Siddhi queries are one way of invoking Streaming ML modules in <code>streamingml</code> package.For this example i have been using CCPP dataset from UCI repository. Change streams and parameters to match your case.</p>
+
+<p>Siddhi Query for Streaming Linear regression (Spark Based)</p>
+
+<pre><code>@Import('ccppInputStream:1.0.0')
+define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
+
+@Export('ccppOutputStream:1.0.0')
+define stream ccppOutputStream (stderr double);
+
+from ccppInputStream#streamingml:streamlinreg(1, 2, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
+select stderr
+insert into ccppOutputStream;
+</code></pre>
+
+<p>If you want to get model parameters change the output stream according to extract them. OutputStream consist of model parameters.So you can use siddhi query like below where beta0 is the intercept of the streaming regression model.</p>
+
+<pre><code>@Import('ccppInputStream:1.0.0')
+define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
+
+@Export('ccppOutputStream:1.0.0')
+define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, beta0 double, beta1 double, beta2 double, beta3 double, beta4 double);
+
+from ccppInputStream#streamingml:streamlinreg(1, 2, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
+select *
+insert into ccppOutputStream;
+</code></pre>
+
+<p>Siddhi Query for Streaming KMeans Clustering (Spark Based)</p>
+
+<pre><code>@Import('ccppInputStream:1.0.0')
+define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
+
+@Export('ccppOutputStream:1.0.0')
+define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string);
+
+from ccppInputStream#streaming:streamclustering(0, 0, 1000, 10, 2, 1, 0.95, PE, ATV, V, AP, RH)
+select *
+insert into ccppOutputStream;
+</code></pre>
+
+<p>Siddhi Query for Streaming Clustering (SAMOA Based)</p>
+
+<pre><code>@Import('ccppInputStream:1.0.0')
+define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
+
+@Export('ccppOutputStream:1.0.0')
+define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string);
+
+from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, 2, 1, 0.95, PE, ATV, V, AP, RH)
+select *
+insert into ccppOutputStream
+</code></pre>
+
+<p>Likewise you can make use of siddhi query to change the analysis and parameter. Lets say you need 3 clusters and you want to get 3 cluster centers back, then you have to use like below,</p>
+
+<pre><code>define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string, center2 string);
+
+from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, *3*, 1, 0.95, PE, ATV, V, AP, RH)
+
+</code></pre>
 
 <hr>
 
