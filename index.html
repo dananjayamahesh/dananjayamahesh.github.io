@@ -255,12 +255,12 @@ WSO2 CEP Siddhi Dependencies</p>
 <h4>
 <a id="streaming-linear-regression-with-sgd-based-on-spark" class="anchor" href="#streaming-linear-regression-with-sgd-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Linear Regression with SGD based on Spark</h4>
 
-<p>Streaming Linear Regression classes are developed in the following way. If anyone want to use it without CEP siddhi extension, you have to intantiate the StreamingLinearRegression Class with correct parameters. Then call 'regress()' function in the class with data points as 'double[]'.</p>
+<p>Streaming Linear Regression classes are developed in the following way. If anyone want to use it without CEP siddhi extension, you have to intantiate the StreamingLinearRegression Class with correct parameters. Then call <code>regress()</code> function in the class with data points as <code>double[]</code>.</p>
 
 <pre><code>public StreamingLinearRegression(int learnType,int windowShift,int paramCount, int batchSize, double ci, int numIteration, double stepSize, double miniBatchFraction)
 </code></pre>
 
-<p>then call the regression function 'regress()'</p>
+<p>then call the regression function <code>regress()</code></p>
 
 <pre><code>public Object[] regress(Double[] eventData)
 </code></pre>
@@ -273,7 +273,7 @@ WSO2 CEP Siddhi Dependencies</p>
 <pre><code>StreamingKMeansClustering(int learnType, int windowShift, int numAttributes, int batchSize, double ci, int numClusters, int numIterations, double alpha)
 </code></pre>
 
-<p>and also you just need to call the 'cluster()' function with data point or event as 'double[]'</p>
+<p>and also you just need to call the <code>cluster()</code> function with data point or event as <code>double[]</code></p>
 
 <pre><code>public Object[] cluster(Double[] eventData)
 </code></pre>
@@ -286,7 +286,7 @@ WSO2 CEP Siddhi Dependencies</p>
 <pre><code>public StreamingClustering(int learnType,int paramCount, int batchSize, double ci, int numClusters,int numIteration, double alpha){
 </code></pre>
 
-<p>to train the model with data/event with the correct instantiation you have to call 'cluster()' function</p>
+<p>to train the model with data/event with the correct instantiation you have to call <code>cluster()</code> function</p>
 
 <pre><code>public Object[] cluster(double[] eventData)
 </code></pre>
