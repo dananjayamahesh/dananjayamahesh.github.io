@@ -158,6 +158,68 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <h3>
 <a id="implementation" class="anchor" href="#implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation</h3>
 
+<p>Implementation consist of three main components and three main CEP siddhi StreamProcessor Extensions,</p>
+
+<ol>
+<li>StreamingLinearRegression - Streaming Linear Regression with SGD based on Spark</li>
+<li>StreamingKMeansClustering - Streaming KMeans Clustering based on Spark</li>
+<li>
+<p>StreamingClustring - Streaming Clustering based on SAMOA</p>
+
+<h4>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h4>
+
+<p>As long as i use Maven to build with dependencies i use these following dependencies in my pom.xml.
+WSO2 CEP Siddhi Dependencies
+`    
+  org.wso2.siddhi
+  siddhi-core
+   3.0.6-SNAPSHOT 
+</p>
+
+<p>
+  org.wso2.siddhi
+  siddhi-query-api
+   3.0.6-SNAPSHOT 
+
+<code>
+**Apache Spark Dependencies**
+</code>    
+  org.apache.spark
+  spark-core_2.10
+  1.6.1
+</p>
+
+<p>
+  org.apache.spark
+  spark-mllib_2.10
+  1.6.1
+
+`</p>
+
+<h4>
+<a id="wso2-cep-siddhi-extension" class="anchor" href="#wso2-cep-siddhi-extension" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP Siddhi Extension</h4>
+
+<p>All three components have their native CEP siddhi extensions based on the StreamProcessor Extension.
+`</p>
+</li>
+</ol>
+
+<p>`</p>
+
+<h4>
+<a id="streaming-linear-regression-with-sgd-based-on-spark" class="anchor" href="#streaming-linear-regression-with-sgd-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Linear Regression with SGD based on Spark</h4>
+
+<p>First to build a CEP siddh extensions we have to use wso2 cep siddhi dependencies which can be 
+<code>
+</code></p>
+
+<h4>
+<a id="streaming-kmeans-clustering-based-on-spark" class="anchor" href="#streaming-kmeans-clustering-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming KMeans Clustering based on Spark</h4>
+
+<h4>
+<a id="streaming-clustering-based-on-samoa" class="anchor" href="#streaming-clustering-based-on-samoa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Clustering based on SAMOA</h4>
+
 <hr>
 
 <h3>
