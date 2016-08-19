@@ -291,8 +291,6 @@ WSO2 CEP Siddhi Dependencies</p>
 <pre><code>public Object[] cluster(double[] eventData)
 </code></pre>
 
-<hr>
-
 <h4>
 <a id="samoa-topology-for-cep-integration" class="anchor" href="#samoa-topology-for-cep-integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SAMOA Topology For CEP Integration</h4>
 
@@ -306,6 +304,26 @@ WSO2 CEP Siddhi Dependencies</p>
 <li>Streaming Clustering Entrance Processor (StreamingClusteringEntranceProcessor.java)</li>
 <li>Streaming Clustering Evaluation Processor (StreamingClusteringEvaluationProcessor.java )</li>
 </ol>
+
+<p>Inside Streaming Clustering class there are ingress and egress buffers to buffer the streams and convert them from CEP side to SAMOA side and vise versa. Ingress queue for events or event data while egress queue consist of clustering model results such as number of clusters and cluster centers. This is inside <code>StreamingClustering.java</code></p>
+
+<pre><code> public ConcurrentLinkedQueue&lt;double[]&gt;cepEvents;
+ public ConcurrentLinkedQueue&lt;Clustering&gt;samoaClusters ;
+</code></pre>
+
+<p>Streaming Clustering Task Builder is the one who invoke the my topology for learning and training. In that task builder it initialize the Task class which contains the information of the topology.When a new task is assigned the Task Builder builds the task with necessary parameters.</p>
+
+<pre><code>task.setFactory(new SimpleComponentFactory());
+task.init();
+SimpleEngine.submitTopology(task.getTopology());
+</code></pre>
+
+<p>When the task is identified as Streaming Clustering Task, it will be instantiated and initialize the ml topology successfully. When we take Streaming Clustering Task which inherited by samoa Task can be easily deployed as regular SAMOA Task at <code>org.apache.samoa.tasks.Task</code>.</p>
+
+<pre><code>public class StreamingClusteringTask implements Task, Configurable
+</code></pre>
+
+<hr>
 
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
