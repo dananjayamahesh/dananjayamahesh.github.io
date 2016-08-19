@@ -457,6 +457,8 @@ mvn package
 <p>streamingml:streamclustering( [learn-type], [window-shift], [batch-size], [number-iterations], [number-clusters], [alpha], [confidence-interval], [Variable List])</p>
 </blockquote>
 
+<p>If you take Spark base one batch-size can be interpreted as the number of data events that the model will be trained and updated. But if you take the same batch-size parameter in SAMOA you can see that batch-size related to the number data events that the model will be updated to cep side, because at each instance or data point it retrain the model.</p>
+
 <h4>
 <a id="siddhi-query-for-streaming-linear-regression-spark-based" class="anchor" href="#siddhi-query-for-streaming-linear-regression-spark-based" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Siddhi Query for Streaming Linear regression (Spark Based)</h4>
 
@@ -466,7 +468,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (stderr double);
 
-from ccppInputStream#streamingml:streamlinreg(0, 0, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streamingml:streamlinreg(0, 0, 1000,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
 select stderr
 insert into ccppOutputStream;
 </code></pre>
@@ -479,7 +481,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, beta0 double, beta1 double, beta2 double, beta3 double, beta4 double);
 
-from ccppInputStream#streamingml:streamlinreg(0, 0, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streamingml:streamlinreg(0, 0, 1000,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
 select *
 insert into ccppOutputStream;
 </code></pre>
@@ -524,6 +526,8 @@ from ccppInputStream#streamingml:streamclusteringsamoa(0, 0, 1000, 10, 3, 1, 0.9
 select *
 insert into ccppOutputStream
 </code></pre>
+
+<p>You can change batch-size and see how the model will be updated with the data streams.</p>
 
 <hr>
 
