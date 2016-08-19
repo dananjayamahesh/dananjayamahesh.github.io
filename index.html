@@ -366,7 +366,7 @@ mvn package
 </code></pre>
 
 <p>If you want to use it with CEP please follow the following steps and execute the siddhi queries listed in the next section. Please follow the instruction of WSO2 CEP documentation to create example execution plan.
-Copy target/streamingml-1.0-SNAPSHOT.jar into CEP_HOME/repository/component/lib</p>
+*Copy target/streamingml-1.0-SNAPSHOT.jar into CEP_HOME/repository/component/lib</p>
 
 <ul>
 <li>go to CEP_HOME/bin</li>
@@ -374,6 +374,65 @@ Copy target/streamingml-1.0-SNAPSHOT.jar into CEP_HOME/repository/component/lib<
 <li>Then create InputStream and OutputStream correctly. More info click <a href="https://docs.wso2.com/display/CEP400/Getting+Started">here</a>.</li>
 <li>Then go to Execution Plan and copy paste siddhi queries in the next section.</li>
 </ul>
+
+<p>And in advance if you want to pack with the relevant jars for this streamingml package with it, please use the maven shade plugin that is commented in the <code>pom.xml</code> file. currently it is using the compiler plugin. Sometimes when CEP cannot identifies the necessary jars such as samoa it will give exceptions. So in that case you have to pack necessary jars inside streamingml jar file. </p>
+
+<pre><code> &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+          &lt;source&gt;1.8&lt;/source&gt;
+          &lt;target&gt;1.8&lt;/target&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+</code></pre>
+
+<p>Therefore if you want to pack necessary jars inside streamingml jar before you put it into CEP_HOME/repository/component/lib , uncomment <code>maven-shade-plugin</code> and comment the <code>maven-compiler-plugin</code>.When you do these steps now you can see two jars inside target/ folder. put both of them inside CEP_HOME/repository/component/lib folder and start CEP again.</p>
+
+<pre><code>  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+       &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;shade&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+              &lt;transformers&gt;
+                &lt;transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"&gt;
+                  &lt;resource&gt;
+                    reference.conf
+                  &lt;/resource&gt;
+                &lt;/transformer&gt;
+              &lt;/transformers&gt;
+              &lt;instructions&gt;
+                &lt;Import-Package&gt;
+                  org.apache.spark.network.*;version="1.6.1";
+                &lt;/Import-Package&gt;
+              &lt;/instructions&gt;
+              &lt;descriptorRefs&gt;
+                &lt;descriptorRef&gt;
+                  jar-with-dependencies
+                &lt;/descriptorRef&gt;
+              &lt;/descriptorRefs&gt;
+              &lt;source&gt;1.8&lt;/source&gt;
+              &lt;target&gt;1.8&lt;/target&gt;
+            &lt;/configuration&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+
+</code></pre>
 
 <hr>
 
