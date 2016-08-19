@@ -444,10 +444,17 @@ mvn package
 <p>Siddhi queries are one way of invoking Streaming ML modules in <code>streamingml</code> package.For this example i have been using CCPP dataset from UCI repository. Change streams and parameters to match your case. There are two types of invoking queries. One for Streaming Linear Regression and other one is Streaming Clustering. They are same and inorder as we discussed in the flexibility and adaptability section. But for your convenience i am interpret those query structure.</p>
 
 <h4>
-<a id="streaming-linear-regression-query" class="anchor" href="#streaming-linear-regression-query" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Linear Regression Query</h4>
+<a id="streaming-linear-regression-query-structure" class="anchor" href="#streaming-linear-regression-query-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Linear Regression Query Structure</h4>
 
 <blockquote>
 <p>streaminml:streamlinreg( [learn-type], [window-shift], [mini-batch-size],[number-of-iteration], [step-size], [mini-batch-fraction], [ci], [Variable List]) </p>
+</blockquote>
+
+<h4>
+<a id="streaming-clustering-query-structure" class="anchor" href="#streaming-clustering-query-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Clustering Query Structure</h4>
+
+<blockquote>
+<p>streamingml:streamclustering( [learn-type], [window-shift], [batch-size], [number-iterations], [number-clusters], [alpha], [confidence-interval], [Variable List])</p>
 </blockquote>
 
 <h4>
