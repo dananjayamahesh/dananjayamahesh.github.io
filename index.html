@@ -163,27 +163,23 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <ol>
 <li>StreamingLinearRegression - Streaming Linear Regression with SGD based on Spark</li>
 <li>StreamingKMeansClustering - Streaming KMeans Clustering based on Spark</li>
-<li>
-<p>StreamingClustring - Streaming Clustering based on SAMOA</p>
-
-<h4>
-<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h4>
-
-<p>As long as i use Maven to build with dependencies i use these following dependencies in my pom.xml.
-WSO2 CEP Siddhi Dependencies
- 
-  org.wso2.siddhi
-  siddhi-core
-   3.0.6-SNAPSHOT 
-</p>
-
-<p>
-  org.wso2.siddhi
-  siddhi-query-api
-   3.0.6-SNAPSHOT 
-</p>
-</li>
+<li>StreamingClustring - Streaming Clustering based on SAMOA
+#### Dependencies
+As long as i use Maven to build with dependencies i use these following dependencies in my pom.xml.
+WSO2 CEP Siddhi Dependencies</li>
 </ol>
+
+<pre lang="&lt;dependency&gt;"><code>      &lt;groupId&gt;org.wso2.siddhi&lt;/groupId&gt;
+      &lt;artifactId&gt;siddhi-core&lt;/artifactId&gt;
+      &lt;version&gt; 3.0.6-SNAPSHOT &lt;/version&gt;
+     &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.wso2.siddhi&lt;/groupId&gt;
+      &lt;artifactId&gt;siddhi-query-api&lt;/artifactId&gt;
+      &lt;version&gt; 3.0.6-SNAPSHOT &lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre>
 
 <p>Apache Spark Dependencies
    
