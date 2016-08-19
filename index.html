@@ -218,7 +218,7 @@ WSO2 CEP Siddhi Dependencies</p>
     &lt;/dependency&gt;
 </code></pre>
 
-<p>Samoa Dependencies are important. Since latest version of samoa 0.4.0-incubator is not in the maven repository you have two options. Either find remote repository or build samoa latest locally. In my case i use locally built Samoa 0.4.0-incubator. For more information of getting started with SAMOA click <a href="https://samoa.incubator.apache.org/">here</a> May be this <a href="https://samoa.incubator.apache.org/">link</a> will be helpful too. And also please use the belo dependency since it is using in SAMOA.</p>
+<p>Samoa dependencies are important. Since latest version of samoa 0.4.0-incubator is not in the maven repository you have two options. Either find remote repository or build samoa latest locally. In my case i use locally built Samoa 0.4.0-incubator. For more information of getting started with SAMOA click <a href="https://samoa.incubator.apache.org/">here</a> . May be this <a href="https://samoa.incubator.apache.org/">link</a> will be helpful too. And also please use the below dependency since it is using in SAMOA.</p>
 
 <pre><code>    &lt;dependency&gt;
       &lt;groupId&gt;com.github.javacliparser&lt;/groupId&gt;
@@ -230,17 +230,28 @@ WSO2 CEP Siddhi Dependencies</p>
 <h4>
 <a id="wso2-cep-siddhi-extension" class="anchor" href="#wso2-cep-siddhi-extension" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 CEP Siddhi Extension</h4>
 
-<p>All three components have their native CEP siddhi extensions based on the StreamProcessor Extension.
-`</p>
+<p>All three components have their native CEP siddhi extensions based on the StreamProcessor Extension. CEP Extension is a one way of using the core components with outside data streams.These are the three classes extending CEP StreamProcessor.</p>
 
-<p>`</p>
+<pre><code>public class StreamingLinearRegressionStreamProcessor extends StreamProcessor
+</code></pre>
+
+<pre><code>public class StreamingKMeansClusteringStreamProcessor extends StreamProcessor
+</code></pre>
+
+<pre><code>public class StreamingClusteringWithSamoaStreamProcessor extends StreamProcessor
+</code></pre>
+
+<p>And also to publish these extensions on the CEP server we have to follow two steps. We have to add following lines to .siddhiext file in the resources.</p>
+
+<pre><code>streamlinreg=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingLinearRegressionStreamProcessor
+streamclustering=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingKMeansClusteringStreamProcessor
+streamclusteringsamoa=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingClusteringWithSamoaStreamProcessor
+</code></pre>
 
 <h4>
 <a id="streaming-linear-regression-with-sgd-based-on-spark" class="anchor" href="#streaming-linear-regression-with-sgd-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Linear Regression with SGD based on Spark</h4>
 
-<p>First to build a CEP siddh extensions we have to use wso2 cep siddhi dependencies which can be 
-<code>
-</code></p>
+<p>First to build a CEP siddh extensions we have to use wso2 cep siddhi dependencies which can be </p>
 
 <h4>
 <a id="streaming-kmeans-clustering-based-on-spark" class="anchor" href="#streaming-kmeans-clustering-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming KMeans Clustering based on Spark</h4>
