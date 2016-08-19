@@ -440,7 +440,8 @@ mvn package
 
 <p>Siddhi queries are one way of invoking Streaming ML modules in <code>streamingml</code> package.For this example i have been using CCPP dataset from UCI repository. Change streams and parameters to match your case.</p>
 
-<p>Siddhi Query for Streaming Linear regression (Spark Based)</p>
+<h4>
+<a id="siddhi-query-for-streaming-linear-regression-spark-based" class="anchor" href="#siddhi-query-for-streaming-linear-regression-spark-based" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Siddhi Query for Streaming Linear regression (Spark Based)</h4>
 
 <pre><code>@Import('ccppInputStream:1.0.0')
 define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
@@ -466,7 +467,8 @@ select *
 insert into ccppOutputStream;
 </code></pre>
 
-<p>Siddhi Query for Streaming KMeans Clustering (Spark Based)</p>
+<h4>
+<a id="siddhi-query-for-streaming-kmeans-clustering-spark-based" class="anchor" href="#siddhi-query-for-streaming-kmeans-clustering-spark-based" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Siddhi Query for Streaming KMeans Clustering (Spark Based)</h4>
 
 <pre><code>@Import('ccppInputStream:1.0.0')
 define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
@@ -479,7 +481,8 @@ select *
 insert into ccppOutputStream;
 </code></pre>
 
-<p>Siddhi Query for Streaming Clustering (SAMOA Based)</p>
+<h4>
+<a id="siddhi-query-for-streaming-clustering-samoa-based" class="anchor" href="#siddhi-query-for-streaming-clustering-samoa-based" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Siddhi Query for Streaming Clustering (SAMOA Based)</h4>
 
 <pre><code>@Import('ccppInputStream:1.0.0')
 define stream ccppInputStream (PE double, ATV double, V double, AP double, RH double);
