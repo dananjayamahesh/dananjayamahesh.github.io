@@ -466,7 +466,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (stderr double);
 
-from ccppInputStream#streamingml:streamlinreg(1, 2, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streamingml:streamlinreg(0, 0, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
 select stderr
 insert into ccppOutputStream;
 </code></pre>
@@ -479,7 +479,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, beta0 double, beta1 double, beta2 double, beta3 double, beta4 double);
 
-from ccppInputStream#streamingml:streamlinreg(1, 2, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streamingml:streamlinreg(0, 0, 4,10, 0.00000001, 1.0, 0.95, PE, ATV, V, AP, RH)
 select *
 insert into ccppOutputStream;
 </code></pre>
@@ -493,7 +493,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string);
 
-from ccppInputStream#streaming:streamclustering(0, 0, 1000, 10, 2, 1, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streamingml:streamclustering(0, 0, 1000, 10, 2, 1, 0.95, PE, ATV, V, AP, RH)
 select *
 insert into ccppOutputStream;
 </code></pre>
@@ -507,7 +507,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string);
 
-from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, 2, 1, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streamingml:streamclusteringsamoa(0, 0, 1000, 10, 2, 1, 0.95, PE, ATV, V, AP, RH)
 select *
 insert into ccppOutputStream
 </code></pre>
@@ -520,7 +520,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string, center2 string);
 
-from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, 3, 1, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streamingml:streamclusteringsamoa(0, 0, 1000, 10, 3, 1, 0.95, PE, ATV, V, AP, RH)
 select *
 insert into ccppOutputStream
 </code></pre>
