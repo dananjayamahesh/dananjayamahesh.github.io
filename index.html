@@ -29,7 +29,7 @@
 <li>   WSO2 CEP (Complex Event Processor)</li>
 <li>   Solution</li>
 <li>   Architecture &amp; Implementation</li>
-<li>   Environment Set-Up</li>
+<li>   Getting Started</li>
 <li>   WSO2 Siddhi Query for Streaming ML analysis</li>
 <li>   GSOC Final Evaluation Links</li>
 </ol>
@@ -97,23 +97,27 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <hr>
 
 <h3>
-<a id="architecture--implementation" class="anchor" href="#architecture--implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture &amp; Implementation</h3>
+<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture</h3>
 
 <ol>
 <li>      Spark Based Real Time Predictive Big Data Analysis</li>
 </ol>
 
+<p>Both Streaming Linear Regression with SGD and Streaming Clustering withi mini-batch clustering is based on the same architetcure with different Siddhi extensions and core classes. In both spark cases Streaming classes inside my API handles the mini-batch processing.</p>
+
 <p><img src="images/sparkml.jpg" alt="Spark Based Streaming ML Analysis"></p>
+
+<p>Though the classes are named as Streaming.. they can use for both cases mini-batch learning and streaming learning. Spark based architecture is purely mini-batch learning and samoa based implementation is native streaming learning one. But as long as they have opposite counterparts we can use two implementations wiseversa. We can use saprk based implementation for streaming by reducing batch sizes to micro batches and we can use samoa based architecture to micro-batch learning. In the spark case the learning cycles are based on the minibatches and not as streams which may be good for high volume of data. </p>
 
 <ol>
 <li>      Samoa Based Real Time Massive Predictive Analysis</li>
 </ol>
 
-<p><img src="images/samoaml.jpg" alt="Samoa Predictive Analysis"></p>
-
-<p>For Samoa Task</p>
+<p>Integration of SAMOA (Scalable and Massive Online Analysis) with WSO2 CEP is a challenging task. To do that i had to go through both CEP architecture and SAMOA architecture. In Samoa by using their basic building blocks we can create new predictive analysis ML topologies to train ML models learn from data by extracting insight of near massive data. To integrate SAMOA with the new framework such as WSO2 CEP, we should have a good knwoledge to handle samoa blocks. By this way we can feed data coming from the CEP to SAMOA ML topologies built for our purposes. To make use of the SAMOA for custom integration please look at samoa <a href="https://samoa.incubator.apache.org/documentation/Home.html">here</a>. For CEP and our API integration SAMOA, customized SAMOA modules are used which we will discussed in the Implementation. In the SAMOA integration its is paramount important to decide the architecture for core to handle data as streams for real time learning. You can find a custom SMOA Task which can be build with basic SAMOA component in the following.</p>
 
 <p><img src="images/samoaml2.jpg" alt="Samoa Topology"></p>
+
+<p><img src="images/samoaml.jpg" alt="Samoa Predictive Analysis"></p>
 
 <hr>
 
