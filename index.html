@@ -358,6 +358,23 @@ public Example&lt;Instance&gt; nextInstance()
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
+<p>If you are supposed to use WSO2 CEP framework to test the <code>streamingml</code> package download it. For more information please refer <a href="http://wso2.com/products/complex-event-processor/">this</a>. If you want to use this as a third party API you dont need WSO2 CEP.follow below steps <code>streamingml</code> package in your project.</p>
+
+<pre><code>git clone https://github.com/dananjayamahesh/streamingml.git
+cd streamingml
+mvn package
+</code></pre>
+
+<p>If you want to use it with CEP please follow the following steps and execute the siddhi queries listed in the next section. Please follow the instruction of WSO2 CEP documentation to create example execution plan.
+Copy target/streamingml-1.0-SNAPSHOT.jar into CEP_HOME/repository/component/lib</p>
+
+<ul>
+<li>go to CEP_HOME/bin</li>
+<li>start the CEP by ./wso2server.sh</li>
+<li>Then create InputStream and OutputStream correctly. More info click <a href="https://docs.wso2.com/display/CEP400/Getting+Started">here</a>.</li>
+<li>Then go to Execution Plan and copy paste siddhi queries in the next section.</li>
+</ul>
+
 <hr>
 
 <h3>
