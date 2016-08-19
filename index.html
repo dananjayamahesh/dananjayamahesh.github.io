@@ -55,7 +55,7 @@
 <a id="apache-spark-and-mini-batch-processing" class="anchor" href="#apache-spark-and-mini-batch-processing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Apache Spark and Mini-Batch Processing</h3>
 
 <p>Spark has mini-batch processing based incremetal algorithms which is currenlty one of best solution for distributed processing with the fastest MapReduce algorithm than Hadoop. And also Spark has streaming solution which divide massive data sets or data streams into distributed streams and process against incremental algorithms. Apache Spark has a incremental learning algorithm support sudh as mini-batch algorithms, (SGD) stochastic gradient optimizations. Storm is the underlying distributed stream processing framework for spark. Thei streaming solution is advances to their MLLib, which mae use of same set of algorithms upon distributed streams fro streaming analysis. Therefore Spache Spark is ideal for handling high volume of data rather than processing faster which may be the case in extracting near insight of streaming learning.
-Most important factor is that even though the Apache Spark support mini-nbatch learning we can extensd its features to train models and retrain them as streams in real time as micro batches by reducing the batch size. This is not encouraged when the massive data volume is the critical factor for the  anlaysis. Beacuse in the batch-processing there is always a additional delay. Batch processing is really good for the situation where we need strategic insight when there is no need to process data in real time. Therefore spark is ideal for mini-batch processing scenarios.</p>
+Most important factor is that even though the Apache Spark support mini-nbatch learning we can extensd its features to train models and retrain them as streams in real time as micro batches by reducing the batch size. This is not encouraged when the massive data volume is the critical factor for the  anlaysis. Because in the batch-processing there is always a additional delay. Batch processing is really good for the situation where we need strategic insight when there is no need to process data in real time. Therefore spark is ideal for mini-batch processing scenarios.</p>
 
 <hr>
 
@@ -169,7 +169,7 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <h4>
 <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h4>
 
-<p>As long as i use Maven to build with dependencies i use these following dependencies in my pom.xml
+<p>As long as i use Maven to build with dependencies i use these following dependencies in my pom.xml .
 WSO2 CEP Siddhi Dependencies</p>
 
 <pre><code>    &lt;dependency&gt;
@@ -244,20 +244,52 @@ WSO2 CEP Siddhi Dependencies</p>
 <p>And also to publish these extensions on the CEP server we have to follow two steps. We have to add following lines to .siddhiext file in the resources.</p>
 
 <pre><code>streamlinreg=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingLinearRegressionStreamProcessor
-streamclustering=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingKMeansClusteringStreamProcessor
-streamclusteringsamoa=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingClusteringWithSamoaStreamProcessor
+</code></pre>
+
+<pre><code>streamclustering=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingKMeansClusteringStreamProcessor
+</code></pre>
+
+<pre><code>streamclusteringsamoa=org.wso2.carbon.ml.siddhi.extension.streamingml.StreamingClusteringWithSamoaStreamProcessor
 </code></pre>
 
 <h4>
 <a id="streaming-linear-regression-with-sgd-based-on-spark" class="anchor" href="#streaming-linear-regression-with-sgd-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Linear Regression with SGD based on Spark</h4>
 
-<p>First to build a CEP siddh extensions we have to use wso2 cep siddhi dependencies which can be </p>
+<p>Streaming Linear Regression classes are developed in the following way. If anyone want to use it without CEP siddhi extension, you have to intantiate the StreamingLinearRegression Class with correct parameters. Then call 'regress()' function in the class with data points as 'double[]'.</p>
+
+<pre><code>public StreamingLinearRegression(int learnType,int windowShift,int paramCount, int batchSize, double ci, int numIteration, double stepSize, double miniBatchFraction)
+</code></pre>
+
+<p>then call the regression function 'regress()'</p>
+
+<pre><code>public Object[] regress(Double[] eventData)
+</code></pre>
 
 <h4>
 <a id="streaming-kmeans-clustering-based-on-spark" class="anchor" href="#streaming-kmeans-clustering-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming KMeans Clustering based on Spark</h4>
 
+<p>Streaming KMeans Clustering can be used either as a cep extension or standalone API. you just need to instantiate the StreamingKMeansClustering class with relevant parameters.</p>
+
+<pre><code>StreamingKMeansClustering(int learnType, int windowShift, int numAttributes, int batchSize, double ci, int numClusters, int numIterations, double alpha)
+</code></pre>
+
+<p>and also you just need to call the 'cluster()' function with data point or event as 'double[]'</p>
+
+<pre><code>public Object[] cluster(Double[] eventData)
+</code></pre>
+
 <h4>
 <a id="streaming-clustering-based-on-samoa" class="anchor" href="#streaming-clustering-based-on-samoa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Clustering based on SAMOA</h4>
+
+<p>Even though the internal structure and functionality is different than the Spark based streaming clustering solution you can use same call and instantiation for the StreamingClustering with Samoa based implementation.</p>
+
+<pre><code>public StreamingClustering(int learnType,int paramCount, int batchSize, double ci, int numClusters,int numIteration, double alpha){
+</code></pre>
+
+<p>to train the model with data/event with the correct instantiation you have to call 'cluster()' function</p>
+
+<pre><code>public Object[] cluster(double[] eventData)
+</code></pre>
 
 <hr>
 
