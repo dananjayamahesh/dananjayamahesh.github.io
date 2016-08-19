@@ -260,7 +260,7 @@ WSO2 CEP Siddhi Dependencies</p>
 <pre><code>public StreamingLinearRegression(int learnType,int windowShift,int paramCount, int batchSize, double ci, int numIteration, double stepSize, double miniBatchFraction)
 </code></pre>
 
-<p>then call the regression function <code>regress()</code></p>
+<p>then call the regression function <code>regress()</code> to train and retrain the ML models.</p>
 
 <pre><code>public Object[] regress(Double[] eventData)
 </code></pre>
@@ -268,12 +268,12 @@ WSO2 CEP Siddhi Dependencies</p>
 <h4>
 <a id="streaming-kmeans-clustering-based-on-spark" class="anchor" href="#streaming-kmeans-clustering-based-on-spark" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming KMeans Clustering based on Spark</h4>
 
-<p>Streaming KMeans Clustering can be used either as a cep extension or standalone API. you just need to instantiate the StreamingKMeansClustering class with relevant parameters.</p>
+<p>Streaming KMeans Clustering can be used either as a CEP extension or standalone API. you just need to instantiate the StreamingKMeansClustering class with relevant parameters.</p>
 
 <pre><code>StreamingKMeansClustering(int learnType, int windowShift, int numAttributes, int batchSize, double ci, int numClusters, int numIterations, double alpha)
 </code></pre>
 
-<p>and also you just need to call the <code>cluster()</code> function with data point or event as <code>double[]</code></p>
+<p>and also you just need to call the <code>cluster()</code> function with data point or event as <code>double[]</code> to train ML model.</p>
 
 <pre><code>public Object[] cluster(Double[] eventData)
 </code></pre>
@@ -292,6 +292,11 @@ WSO2 CEP Siddhi Dependencies</p>
 </code></pre>
 
 <hr>
+
+<h4>
+<a id="samoa-topology-for-cep-integration" class="anchor" href="#samoa-topology-for-cep-integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SAMOA Topology For CEP Integration</h4>
+
+<p>This is the challenging part of this entire project. Understanding SAMOA architecture and integrating it with the CEP event streams through CEP siddhi extension consumed time, but finally paid of with good results. As we discussed above <code>StreamingClustering.java</code> is the core module that integrate CEP extension with my SAMOA ML analysis topology.you can find necessary classes i developed for this at <code>org.wso2.carbon.ml.siddhi.extension.streamingml.samoa</code> . There you can see essential components for this integration for Streaming Clustering solution for CEP. In the same way you can develop your own classes to provide other streaming ml analysis on top of this essentials.</p>
 
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
