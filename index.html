@@ -72,7 +72,7 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <h3>
 <a id="wso2-ml-machine-learner" class="anchor" href="#wso2-ml-machine-learner" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 ML (Machine Learner)</h3>
 
-<p>WSO2 use <code>carbon-ml</code> as their machine learning (ML) backbone which is based on the famous Apache Spark. With objective of supporting Big Data with a massive online analsis their intial project idea to extend their ML capabilities to real time retrain ML models with time without forgetting past which is the current scenario. Therefore the objective is to retrain with present data and past insight of data (basically the past ML models) and retain them fro predictions with prediction streams. In this way they sont need to store massive amount of datasets to training where model conatins the insight of data. Currently WSO2 ML has different extensions to work with their CEP (Complex Event Processor) which is their stream/event-processing solution. For more  information and documentation of WSO2 ML please check <a href="http://wso2.com/products/machine-learner/">here</a>. Ultimate objective of this project is to develop API with a CEP siddhi extension that can be deplyed on carbon-ml and as well as standalone siddhi extension.</p>
+<p>WSO2 use <code>carbon-ml</code> as their machine learning (ML) backbone which is based on the famous Apache Spark. With objective of supporting Big Data with a massive online analysis their intial project idea to extend their ML capabilities to real time retrain ML models with time without forgetting past which is the current scenario. Therefore the objective is to retrain with present data and past insight of data (basically the past ML models) and retain them fro predictions with prediction streams. In this way they do not need to store massive amount of datasets to training where model contains the insight of data. Currently WSO2 ML has different extensions to work with their CEP (Complex Event Processor) which is their stream/event-processing solution. For more  information and documentation of WSO2 ML please check <a href="http://wso2.com/products/machine-learner/">here</a>. Ultimate objective of this project is to develop API with a CEP siddhi extension that can be deployed on carbon-ml and as well as standalone siddhi extension.</p>
 
 <hr>
 
@@ -86,11 +86,11 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <h3>
 <a id="solution" class="anchor" href="#solution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h3>
 
-<p>We have provided the two solutions based on the WSO2 ML team requirement. This two solutions address two different aspects of big real time data analysis. high data volume aware solution which can address streaming learning and purely streaming aware solution which can address the volume by using micro-batch processing. They are spark based and samoa based real time predictive big data analysis. According to the WSO2 project idea the first implementation is based on the Apache Spark mini-batch processing and incremental learning algorithms such as SDG (Stochasic Gradient Descent) Optimization for Streaming Linear Regression, mini-batch clustering for streaming Kmeans Clustering. Both algorithms periodically retrain and update the ML model and both have their own CEP siddhi extension to invoke from CEP side for predictive analysis. But additioanlly after mid-review of GSOC WSO2 ML is looking for much better streaming solution. Therefore i have do review on SAMOA framwork and integrate it with the cep for high end streaming learning. Therefore As the second phase of my project i have to integrate novel and advanced samoa architecture for real time streaming predictive analysis with a CEP siddhi extension support to deply in the CEP side.Therefore in the complete project i have developed three core modules,</p>
+<p>We have provided the two solutions based on the WSO2 ML team requirement. This two solutions address two different aspects of big real time data analysis. high data volume aware solution which can address streaming learning and purely streaming aware solution which can address the volume by using micro-batch processing. They are spark based and samoa based real time predictive big data analysis. According to the WSO2 project idea the first implementation is based on the Apache Spark mini-batch processing and incremental learning algorithms such as SDG (Stochastic Gradient Descent) Optimization for Streaming Linear Regression, mini-batch clustering for streaming Kmeans Clustering. Both algorithms periodically retrain and update the ML model and both have their own CEP siddhi extension to invoke from CEP side for predictive analysis. But additionally after mid-review of GSOC WSO2 ML is looking for much better streaming solution. Therefore i have do review on SAMOA framework and integrate it with the cep for high end streaming learning. Therefore As the second phase of my project i have to integrate novel and advanced samoa architecture for real time streaming predictive analysis with a CEP siddhi extension support to deply in the CEP side.Therefore in the complete project i have developed three core modules,</p>
 
 <ol>
 <li> Apache Spark based Streaming Linear Regression with mini-batch SGD (Stochastic Gradient Descent) Optimization</li>
-<li> Apache Spark Based Streaming Kmeans CLustering with mini-batch clustering</li>
+<li> Apache Spark Based Streaming Kmeans Clustering with mini-batch clustering</li>
 <li> Apache Samoa Based Streaming Clustering (Integration of SAMOA with WSO2 CEP)</li>
 </ol>
 
@@ -113,16 +113,54 @@ Most important factor is that even though the Apache Spark support mini-nbatch l
 <li>      Samoa Based Real Time Massive Predictive Analysis</li>
 </ol>
 
-<p>Integration of SAMOA (Scalable and Massive Online Analysis) with WSO2 CEP is a challenging task. To do that i had to go through both CEP architecture and SAMOA architecture. In Samoa by using their basic building blocks we can create new predictive analysis ML topologies to train ML models learn from data by extracting insight of near massive data. To integrate SAMOA with the new framework such as WSO2 CEP, we should have a good knwoledge to handle samoa blocks. By this way we can feed data coming from the CEP to SAMOA ML topologies built for our purposes. To make use of the SAMOA for custom integration please look at samoa <a href="https://samoa.incubator.apache.org/documentation/Home.html">here</a>. For CEP and our API integration SAMOA, customized SAMOA modules are used which we will discussed in the Implementation. In the SAMOA integration its is paramount important to decide the architecture for core to handle data as streams for real time learning. You can find a custom SMOA Task which can be build with basic SAMOA component in the following.</p>
+<p>Integration of SAMOA (Scalable and Massive Online Analysis) with WSO2 CEP is a challenging task. To do that i had to go through both CEP architecture and SAMOA architecture. In Samoa by using their basic building blocks we can create new predictive analysis ML topologies to train ML models learn from data by extracting insight of near massive data. To integrate SAMOA with the new framework such as WSO2 CEP, we should have a good knowledge to handle samoa blocks. By this way we can feed data coming from the CEP to SAMOA ML topologies built for our purposes. To make use of the SAMOA for custom integration please look at samoa <a href="https://samoa.incubator.apache.org/documentation/Home.html">here</a>. For CEP and our API integration SAMOA, customized SAMOA modules are used which we will discussed in the Implementation. In the SAMOA integration its is paramount important to decide the architecture for core to handle data as streams for real time learning. You can find a custom SMOA Task which can be build with basic SAMOA component in the following.</p>
 
 <p><img src="images/samoaml2.jpg" alt="Samoa Topology"></p>
 
+<p>Overall Architecture of the SAMOA based implementation is looks like below when SAMOA is integrated with CEP extension to feed data streams. Because of th simple and distributed nature of the SAMOA, it is very easy to build complex and massive streaming analysis topologies with SAMOA building blocks. As a initial steps we have build a SAMOA streaming clustering topology as shown in the above figure to analyses stream data on-line. More details of the implementation can be found in Implementation.</p>
+
 <p><img src="images/samoaml.jpg" alt="Samoa Predictive Analysis"></p>
+
+<p>Both implementations anre JAVA based implementations. Samoa is using instances and InstanceStreams not Events and EventStreams like in CEP. Therefore stream data is buffered and convert from CEP events to SAMOA instances for analysis. CEP has their native ExecutionPlans to invoke predictive analysis which is used to build the predictive analysis Task in SAMOA core. Because of this preserving streaming analysis architecture for data streams as it is, model is retrained at every instance.</p>
+
+<h4>
+<a id="flexibility-and-adjust-ability" class="anchor" href="#flexibility-and-adjust-ability" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Flexibility and Adjust ability</h4>
+
+<p>We have parameterized both implementations and three scenarios where user can easily specify the type and nature of big data analysis that need. If we take analysis wise we have two: Streaming Linear Regression and Streaming Clustering analysis. We have three scenarios if we look at implementation wise. Both Streaming Linear regression and Steaming Clustering with Spark and Streaming Clustering with SAMOA. If we take analysis wide user can adjust following parameters.</p>
+
+<ul>
+<li>Learn Type: Learning method (batch-window, moving-batch-window, time-window)</li>
+<li>Window-Shift: Apply only when the moving batch window is applied</li>
+<li>Mini-Batch - Size:  How often the ML model get retrained or updated</li>
+<li>Number of iteration: Number of iteration runs on the SGD algorithms</li>
+<li>Step-Size: related to Step Size of the SGD optimization algorithm.</li>
+<li>Mini-Batch Fraction: Fraction of the mini-Batch to process at every iteration in SGD algorithm. </li>
+<li>Confidence Interval : This is for future use if there will be any requirement</li>
+<li>Variable-List : feature Vector of the Data point </li>
+</ul>
+
+<p>For the Streaming Clustering Analysis user can adjust following parameters according to the nature of the analysis.</p>
+
+<ul>
+<li>Learn Type: Learning method (batch-window, moving-batch-window, time-window)</li>
+<li>Window-Shift: Apply only when the moving batch window is applied</li>
+<li>Mini-Batch - Size:  How often the ML model get retrained or updated</li>
+<li>Number of iteration: Number of iteration runs on the SGD algorithms</li>
+<li>Number of Clusters: Number of Clusters need for us</li>
+<li>Alpha : Decay Factor which can be used for Data obsolescence</li>
+<li>Confidence Interval : This is for future use if there will be any requirement</li>
+<li>Variable-List : feature Vector of the Data</li>
+</ul>
 
 <hr>
 
 <h3>
-<a id="developer-environment" class="anchor" href="#developer-environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developer Environment</h3>
+<a id="implementation" class="anchor" href="#implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation</h3>
+
+<hr>
+
+<h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
 <hr>
 
