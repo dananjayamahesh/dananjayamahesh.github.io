@@ -441,7 +441,14 @@ mvn package
 <h3>
 <a id="wso2-siddhi-queries-for-streaming-analysis" class="anchor" href="#wso2-siddhi-queries-for-streaming-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WSO2 Siddhi Queries for Streaming Analysis</h3>
 
-<p>Siddhi queries are one way of invoking Streaming ML modules in <code>streamingml</code> package.For this example i have been using CCPP dataset from UCI repository. Change streams and parameters to match your case.</p>
+<p>Siddhi queries are one way of invoking Streaming ML modules in <code>streamingml</code> package.For this example i have been using CCPP dataset from UCI repository. Change streams and parameters to match your case. There are two types of invoking queries. One for Streaming Linear Regression and other one is Streaming Clustering. They are same and inorder as we discussed in the flexibility and adaptability section. But for your convenience i am interpret those query structure.</p>
+
+<h4>
+<a id="streaming-linear-regression-query" class="anchor" href="#streaming-linear-regression-query" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Streaming Linear Regression Query</h4>
+
+<blockquote>
+<p>streaminml:streamlinreg( [learn-type], [window-shift], [mini-batch-size],[number-of-iteration], [step-size], [mini-batch-fraction], [ci], [Variable List]) </p>
+</blockquote>
 
 <h4>
 <a id="siddhi-query-for-streaming-linear-regression-spark-based" class="anchor" href="#siddhi-query-for-streaming-linear-regression-spark-based" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Siddhi Query for Streaming Linear regression (Spark Based)</h4>
@@ -506,7 +513,7 @@ define stream ccppInputStream (PE double, ATV double, V double, AP double, RH do
 @Export('ccppOutputStream:1.0.0')
 define stream ccppOutputStream (PE double, ATV double, V double, AP double, RH double, stderr double, center0 string, center1 string, center2 string);
 
-from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, **3**, 1, 0.95, PE, ATV, V, AP, RH)
+from ccppInputStream#streaming:streamclusteringsamoa(0, 0, 1000, 10, 3, 1, 0.95, PE, ATV, V, AP, RH)
 select *
 insert into ccppOutputStream
 </code></pre>
