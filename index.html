@@ -16,7 +16,8 @@
     </section>
 
     <section class="main-content">
-      <p>This Blog Contains the summary of the Google Summer of Code 2016 project with WSO2 and also the Link needed for final evaluation is given at last. This blog is organized in the following way.</p>
+      <p>This Blog Contains the summary of the Google Summer of Code 2016 project with WSO2<br>
+IMPORTANT: The <strong>LinkS</strong> needed for final evaluation and final <strong>documentation</strong> are given at last. </p>
 
 <hr>
 
@@ -31,7 +32,7 @@
 | Implementation<br>
 | Getting Started<br>
 | WSO2 Siddhi Query for Streaming ML analysis<br>
-| GSOC Final Evaluation Links  </p>
+| <strong>GSOC Final Evaluation Links</strong>  </p>
 
 <hr>
 
@@ -525,7 +526,12 @@ select *
 insert into ccppOutputStream
 </code></pre>
 
-<p>You can change batch-size and see how the model will be updated with the data streams.</p>
+<p>You can change batch-size and see how the model will be updated with the data streams. And one notification if you will use the <code>carbon-ml</code> extension in the future, then you have to use <code>ml</code> rather than <code>streamingml</code> in the siddhi query. As a example query can be found below.</p>
+
+<pre><code>from ccppInputStream#ml:streamclusteringsamoa(0, 0, 1000, 10, 3, 1, 0.95, PE, ATV, V, AP, RH)
+select *
+insert into ccppOutputStream
+</code></pre>
 
 <hr>
 
